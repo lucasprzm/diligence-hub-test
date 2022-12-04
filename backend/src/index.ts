@@ -1,20 +1,23 @@
-import { AppDataSource } from "./database/data-source"
-import { User } from "./entity/User"
+import express, { Request, Response, NextFunction } from "express";
+import "express-async-errors";
+import "reflect-metadata";
+import "./database/data-source";
+import { usersRouter } from "./routes/users";
+import cors from "cors";
+const app = express();
 
-AppDataSource.initialize().then(async () => {
-
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.age = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
-
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
-
-    console.log("Here you can setup and run express / fastify / any other framework.")
-
-}).catch(error => console.log(error))
+app.use(cors());
+app.use(express.json());
+app.use("/users", usersRouter);
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof Error) {
+    return response.status(400).json({ error: err.message });
+  }
+  return response.status(500).json({
+    status: "error",
+    message: "Internal Server Error",
+  });
+});
+app.listen(3333, () => {
+  console.log("Server running locally on port 3333!");
+});
