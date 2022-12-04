@@ -4,22 +4,22 @@ import { v4 as uuid } from "uuid";
 @Entity("users")
 export class User {
   @PrimaryColumn()
-  readonly userId: string;
+  readonly id: string;
 
   @Column()
-  userName: string;
+  name: string;
 
   @Column()
-  userAddress: string;
+  address: string;
 
   @Column()
-  userPhone: string;
+  phone: string;
 
   @Column()
-  userAge: number;
+  age: number;
 
   @Column()
-  userNickName: string;
+  nickName: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -28,8 +28,8 @@ export class User {
   updated_at: Date;
 
   constructor() {
-    if (!this.userId) {
-      this.userId = uuid();
+    if (!this.id) {
+      this.id = uuid();
     }
   }
 }
