@@ -16,6 +16,7 @@ import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR'
 import { Box, Button, IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
+import AddIcon from '@mui/icons-material/Add'
 
 type User = {
   id: string
@@ -161,7 +162,11 @@ export default function Users() {
       enableRowNumbers
       positionActionsColumn="last"
       renderTopToolbarCustomActions={() => (
-        <Button onClick={() => console.log('Cliquei')} variant="contained">
+        <Button
+          onClick={() => console.log('Cliquei')}
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
           Criar Novo Usuário
         </Button>
       )}
