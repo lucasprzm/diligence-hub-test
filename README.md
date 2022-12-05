@@ -10,9 +10,9 @@
 ### Front-end
 
 - [ ] Tela de Criação de Usuários
-- [ ] Tabela de Usuários Cadastrados
+- [x] Tabela de Usuários Cadastrados
 - [ ] Tela de Edição de Usuários
-- [ ] Consumo de API no back-end
+- [x] Consumo de API no back-end
 
 ### Back-end
 
