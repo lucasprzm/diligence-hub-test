@@ -17,27 +17,18 @@ import { Box, Button, IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
+import { useNavigate } from 'react-router-dom'
+import { User } from 'utils/types/user'
 
-type User = {
-  id: string
-  name: string
-  address: string
-  phone: string
-  age: number
-  nickName: string
-  created_at: Date
-  updated_at: Date
-}
+
 
 export default function Users() {
-  //data and fetching state
   const [data, setData] = useState<User[]>([])
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isRefetching, setIsRefetching] = useState(false)
   const [rowCount, setRowCount] = useState(0)
 
-  //table state
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [globalFilter, setGlobalFilter] = useState('')
   const [sorting, setSorting] = useState<SortingState>([])
@@ -45,6 +36,7 @@ export default function Users() {
     pageIndex: 0,
     pageSize: 10
   })
+  const navigate = useNavigate()
 
   const getUsers = async () => {
     const { data } = await api.get('/users/all-users')
@@ -163,7 +155,7 @@ export default function Users() {
       positionActionsColumn="last"
       renderTopToolbarCustomActions={() => (
         <Button
-          onClick={() => console.log('Cliquei')}
+          onClick={() => navigate('/criar-usuario')}
           variant="contained"
           startIcon={<AddIcon />}
         >
