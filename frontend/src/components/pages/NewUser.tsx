@@ -13,59 +13,66 @@ export default function NewUser() {
     formState: { errors }
   } = useForm<User>()
   const onSubmit: SubmitHandler<User> = async (data: User) => {
-    await api.post('/users/new', data).then( (response) => console.warn(response))
-    console.log("Usuário criado!");
-    
+    await api
+      .post('/users/new', data)
+    console.log('Usuário criado!')
   }
   console.log(errors)
 
   return (
-    <div className='flex h-60 flex-col'>
-      <h1>Novo Usuário</h1>
-    <form className='flex w-full flex-col items-center' onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        required
-        id="name"
-        label="Nome"
-        variant="standard"
-        className='my-4 w-1/4'
-        {...register('name', { required: true })}
-      />
-      <TextField
-        required
-        id="address"
-        label="Endereço"
-        variant="standard"
-        className='my-4 w-1/4'
-        {...register('address', { required: true })}
-      />
-      <TextField
-        required
-        id="phone"
-        label="Telefone"
-        variant="standard"
-        className='my-4 w-1/4'
-        {...register('phone', { required: true, maxLength: 15 })}
-      />
-      <TextField
-        required
-        type='number'
-        id="age"
-        label="Idade"
-        variant="standard"
-        className='my-4 w-1/4'
-        {...register('age', { required: true, maxLength: 15 })}
-      />
-      <TextField
-        required
-        id="nickName"
-        label="Apelido"
-        variant="standard"
-        className='my-4 w-1/4'
-        {...register('nickName', { required: true })}
-      />
-      <Button type='submit' className='mb-4 w-1/4' variant="contained" endIcon={<SendIcon />}>Criar Usuário</Button>
-    </form>
+    <div className="flex flex-col items-center">
+      <div>
+        <h1 className="text-xl">Novo Usuário</h1>
+      </div>
+      <form
+        className="flex w-80 flex-col items-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <TextField
+          required
+          id="name"
+          label="Nome"
+          variant="standard"
+          {...register('name', { required: true })}
+          margin="normal"
+        />
+        <TextField
+          required
+          id="address"
+          label="Endereço"
+          variant="standard"
+          {...register('address', { required: true })}
+          margin="normal"
+        />
+        <TextField
+          required
+          id="phone"
+          label="Telefone"
+          variant="standard"
+          {...register('phone', { required: true, maxLength: 15 })}
+          margin="normal"
+        />
+        <TextField
+          required
+          type="number"
+          id="age"
+          label="Idade"
+          variant="standard"
+          {...register('age', { required: true, maxLength: 15 })}
+          margin="normal"
+        />
+        <TextField
+          required
+          id="nickName"
+          label="Apelido"
+          variant="standard"
+          {...register('nickName', { required: true })}
+          margin="normal"
+        />
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+          Criar Usuário
+        </Button>
+      </form>
     </div>
   )
 }

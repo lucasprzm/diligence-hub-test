@@ -39,13 +39,13 @@ export default function Users() {
   const navigate = useNavigate()
 
   const getUsers = async () => {
-    const { data } = await api.get('/users/all-users')
+    const { data } = await api.get('/users/all')
     setData(data)
   }
 
   const removeUser = async (userId: string) => {
     await api
-      .delete('/users/delete-user/' + userId)
+      .delete('/users/delete/' + userId)
       .then(() => window.location.reload())
   }
 
@@ -83,7 +83,7 @@ export default function Users() {
   const actionButtons = (row: MRT_Row<User>) => {
     return (
       <Box>
-        <IconButton onClick={() => console.info('Edit')}>
+        <IconButton onClick={() => navigate('/editar-usuario/' + row.id)}>
           <EditIcon />
         </IconButton>
         <IconButton onClick={() => removeUser(row.id)}>
