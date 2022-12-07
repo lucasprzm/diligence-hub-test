@@ -7,8 +7,11 @@ const userController = new UserController();
 // Registro de novo usuário
 usersRouter.post("/new", userController.create);
 
+// Obter dados de um usário
+usersRouter.get('/get/:id', userController.getUser)
+
 // Obter todos usuários cadastrados
-usersRouter.get("/all-users", userController.getAll)
+usersRouter.get("/all", userController.getAll)
 
 // Login de usuário
 //usersRouter.post("/login", authenticateUserController.handle);
@@ -17,9 +20,9 @@ usersRouter.get("/all-users", userController.getAll)
 //usersRouter.get("/name", getUsernameController.handle);
 
 // Atualizar usuário
-usersRouter.put('/update-user/:id', userController.update)
+usersRouter.put('/update/:id', userController.update)
 
 // Excluir usuário
-usersRouter.delete('/delete-user/:id', userController.delete)
+usersRouter.delete('/delete/:id', userController.delete)
 
 export { usersRouter };

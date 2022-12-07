@@ -24,11 +24,22 @@ export class UserController {
     return response.status(201).json({ message: "Usuário criado!" });
   }
 
+  async getUser(request: Request, response: Response) {
+    const userRepository = AppDataSource.getRepository(User);
+    const { id } = request.params
+    const user = await userRepository.findOneByOrFail({ id })
+
+    if(!user) {
+      throw new Error("Usuário não encontrado!");
+    }
+        
+    return response.status(200).json(user);
+  }
+
   async getAll(request: Request, response: Response) {
     const userRepository = AppDataSource.getRepository(User);
     
     const users = await userRepository.find();
-    console.log(users);
     
     return response.status(200).json(users);
   }
