@@ -13,10 +13,10 @@ import type {
   SortingState
 } from '@tanstack/react-table'
 import { MRT_Localization_PT_BR } from 'material-react-table/locales/pt-BR'
-import { Box, Button, IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import AddIcon from '@mui/icons-material/Add'
+
 import { useNavigate } from 'react-router-dom'
 import { User } from 'utils/types/user'
 import { toast } from 'react-toastify'
@@ -91,10 +91,10 @@ export default function Users() {
     return (
       <Box>
         <IconButton onClick={() => navigate('/editar-usuario/' + row.id)}>
-          <EditIcon />
+          <EditIcon color='secondary'/>
         </IconButton>
         <IconButton onClick={() => removeUser(row.id)}>
-          <DeleteIcon />
+          <DeleteIcon color='secondary'/>
         </IconButton>
       </Box>
     )
@@ -137,7 +137,7 @@ export default function Users() {
         isError
           ? {
               color: 'error',
-              children: 'Error loading data'
+              children: 'Erro ao carregar dados'
             }
           : undefined
       }
@@ -160,15 +160,7 @@ export default function Users() {
       renderRowActions={({ row }) => actionButtons(row)}
       enableRowNumbers
       positionActionsColumn="last"
-      renderTopToolbarCustomActions={() => (
-        <Button
-          onClick={() => navigate('/criar-usuario')}
-          variant="contained"
-          startIcon={<AddIcon />}
-        >
-          Criar Novo Usuário
-        </Button>
-      )}
+      enableTopToolbar={false}
     />
   )
 }
