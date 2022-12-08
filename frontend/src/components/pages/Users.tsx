@@ -19,8 +19,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import { useNavigate } from 'react-router-dom'
 import { User } from 'utils/types/user'
-
-
+import { toast } from 'react-toastify'
 
 export default function Users() {
   const [data, setData] = useState<User[]>([])
@@ -43,10 +42,18 @@ export default function Users() {
     setData(data)
   }
 
-  const removeUser = async (userId: string) => {
-    await api
+  function removeUser(userId: string) {
+    api
       .delete('/users/delete/' + userId)
-      .then(() => window.location.reload())
+      .then(({ status, data }) => {
+        if (status === 200) {
+          toast.success(data.message)
+          window.location.reload()
+        }
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.error)
+      })
   }
 
   useEffect(() => {
