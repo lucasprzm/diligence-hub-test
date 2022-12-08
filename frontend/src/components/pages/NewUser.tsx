@@ -39,9 +39,9 @@ export default function NewUser() {
   }
   
   return (
-    <div className="flex flex-col items-center">
+    <div className="mt-8 flex h-full flex-col items-center">
       <div>
-        <h1 className="text-xl font-bold">Novo Usuário</h1>
+        <h1 className="text-2xl font-bold text-[#733590]">Novo Usuário</h1>
       </div>
       <form
         className="flex w-96 flex-col items-center"
@@ -97,9 +97,11 @@ export default function NewUser() {
          {errors.nickName && (
           <p className="text-red-500">{errors.nickName.message}</p>
         )}
-        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-          Criar Usuário
-        </Button>
+        <div className='mt-8'>
+          <Button size='large'  type="submit" variant="contained" endIcon={<SendIcon />}>
+            Criar Usuário
+          </Button>
+        </div>
       </form>
     </div>
   )

@@ -45,31 +45,31 @@ export default function EditUser() {
       })
   }
 
-  function getUserData() {
-    api
-      .get('/users/get/' + id)
-      .then(({ status, data }) => {
-        if (status === 200) {
-          setUser(data)
-        }
-      })
-      .catch(({ response }) => {
-        toast.error(response.data.error)
-        navigate('/')
-      })
-  }
   useEffect(() => {
+    function getUserData() {
+      api
+        .get('/users/get/' + id)
+        .then(({ status, data }) => {
+          if (status === 200) {
+            setUser(data)
+          }
+        })
+        .catch(({ response }) => {
+          toast.error(response.data.error)
+          navigate('/')
+        })
+    }
     getUserData()
-  })
+  }, [id, navigate])
 
   if (!user) {
     return <h1>Carregando...</h1>
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="mt-8 flex h-full flex-col items-center">
       <div>
-        <h1 className="text-xl font-bold ">Editar Usuário</h1>
+        <h1 className="text-2xl font-bold text-[#733590]">Editar Usuário</h1>
       </div>
       <form
         className="flex w-96 flex-col items-center"
@@ -175,9 +175,11 @@ export default function EditUser() {
         {errors.nickName && (
           <p className="text-red-500">{errors.nickName.message}</p>
         )}
-        <Button type="submit" variant="contained" startIcon={<SaveIcon />}>
-          Salvar
-        </Button>
+        <div className='mt-8'>
+          <Button size='large' type="submit" variant="contained" startIcon={<SaveIcon />}>
+            Salvar
+          </Button>
+        </div>
       </form>
     </div>
   )
