@@ -13,12 +13,6 @@ usersRouter.get('/get/:id', userController.getUser)
 // Obter todos usuários cadastrados
 usersRouter.get("/all", userController.getAll)
 
-// Login de usuário
-//usersRouter.post("/login", authenticateUserController.handle);
-
-// Nome de usuário para a Home
-//usersRouter.get("/name", getUsernameController.handle);
-
 // Atualizar usuário
 usersRouter.put('/update/:id', userController.update)
 

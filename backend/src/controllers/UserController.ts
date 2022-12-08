@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { User } from "../entity/User";
 import { AppDataSource } from "../database/data-source";
-import { hash } from "bcryptjs";
+
 
 export class UserController {
   async create(request: Request, response: Response) {
     const userRepository = AppDataSource.getRepository(User);
     const { name, address, phone, age, nickName } = request.body;
-    //const passwordHash = await hash(password, 10);
+    
     if (!name) {
       throw new Error("Nome não foi preenchido!");
     }
@@ -18,10 +18,10 @@ export class UserController {
 
     const user = userRepository.create({
       name, address, phone, age, nickName
-
     });
     await userRepository.save(user);
-    return response.status(201).json({ message: "Usuário criado!" });
+    console.log(`User ${user.name} created successfully!`);
+    return response.status(201).json({ message: "Usuário criado com sucesso!" });
   }
 
   async getUser(request: Request, response: Response) {
@@ -32,7 +32,7 @@ export class UserController {
     if(!user) {
       throw new Error("Usuário não encontrado!");
     }
-        
+    console.log(`User ${user.name} obtained successfully!`);
     return response.status(200).json(user);
   }
 
@@ -40,7 +40,7 @@ export class UserController {
     const userRepository = AppDataSource.getRepository(User);
     
     const users = await userRepository.find();
-    
+    console.log(`Users obtained successfully!`);
     return response.status(200).json(users);
   }
 
@@ -63,8 +63,8 @@ export class UserController {
     .execute()
 
     const updatedUser = await userRepository.findOneByOrFail({ id })
-    console.log(updatedUser);
     
+    console.log(`User ${updatedUser.name} updated successfully!`);
     return response.status(200).json({ message: "Usuário atualizado com sucesso!"})
 
   }
@@ -86,6 +86,7 @@ export class UserController {
     .where("id = :id", { id })
     .execute()
 
+    console.log(`User ${user.name} removed successfully!`);
     return response.status(200).json({ message: "Usuário excluído com sucesso!"})
   }
 }
