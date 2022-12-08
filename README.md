@@ -9,9 +9,9 @@
 
 ### Front-end
 
-- [ ] Tela de Criação de Usuários
-- [x] Tabela de Usuários Cadastrados
-- [ ] Tela de Edição de Usuários
+- [x] Tela de Criação de Usuários
+- [x] Tabela de Usuários Cadastrados com filtro de busca por todos os campos
+- [x] Tela de Edição de Usuários
 - [x] Consumo de API no back-end
 
 ### Back-end
@@ -29,7 +29,7 @@
 - React - Framework JavaScript para construir interfaces de usuários.
 - React Router - usado para criar rotas no front-end do projeto.
 - Axios - usado para fazer requisições XMLHttp do navegador para a API.
-- Tailwind - framework responsivo para criar sites responsivos.
+- Tailwind - framework para criar sites responsivos.
 
 ### Back-end
 
@@ -37,7 +37,7 @@
 - Express - Framework para aplicações web com Node.js.
 - TypeORM - ORM para realizar as queries do banco de dados.
 - SQLite - banco de dados.
-- Cors - biblioteca que libera o CORS para acesso do front-end ao back-end.
+- Cors - biblioteca de segurança que libera o CORS de acesso do front-end ao back-end.
 - Uuid - biblioteca para criar identificadores únicos universais.
 
 ## 💻 Pré requisitos do projeto
@@ -53,7 +53,7 @@ Antes de começar, verifique se você tem os requisitos a seguir:
 
 ### Front-end
 
-Abra o terminal de sua preferência, acesse a pasta front-end-react e instale as dependências do projeto com o seguinte comando:
+Abra o terminal de sua preferência, acesse a pasta frontend e instale as dependências do projeto com o seguinte comando:
 
 ```
 npm install
@@ -68,12 +68,12 @@ npm run dev
 Pronto! O front-end estará rodando na porta 3000 do servidor local:
 
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 ### Back-end
 
-Abra o terminal de sua preferência, acesse a pasta back-end-node e instale as dependências do projeto com o seguinte comando:
+Abra o terminal de sua preferência, acesse a pasta backend e instale as dependências do projeto com o seguinte comando:
 
 ```
 npm install
